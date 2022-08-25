@@ -20,9 +20,12 @@ If you do not have nvcc available, this command will not run. You can also check
 	Tesla V100
 
 Next, build the code with:
+
 	$ nvcc fractal.cu
 
-And run:
+# Running Code and Checking Results
+To run the code, do the following:
+
 	$ ./a.out 1024 256
 
-This will generate a 1024 by 1024 fractal image with a maximum depth of 256. A resulting .bmp image will be written out that you can use to check for correctness.
+This will generate a 1024 by 1024 fractal image with a maximum depth of 256. A resulting .bmp image will be written out that you can use to check for correctness. If the image is distorted or broken, you know something went wrong! See example `fractal.bmp` file to see what the correct image should look like.
