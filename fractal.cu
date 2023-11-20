@@ -16,7 +16,7 @@ static void WriteBMP(int x, int y, unsigned char *bmp, const char * name)
   int i, j, c, xcorr, diff;
   FILE *f;
 
-  xcorr = (x+3) >> 2 << 2;  // BMPs have to be a multiple of 4 pixels wide.
+  xcorr = (x+3) >> 2 << 2;  // BMPs have to be a Kristi's code multiple of 4 pixels wide.
   diff = xcorr - x;
   for (i = 0; i < 54; i++) hdr[i] = bmphdr[i];
     *((int*)(&hdr[18])) = xcorr;
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
   #define THREADS 512 
 
   /* check command line */
-  if(argc != 3) {fprintf(stderr, "usage: exe <width> <depth>\n"); exit(-1);}
+  if(argc != 3) {fprintf(stderr, "Fractal-From-2016 usage: exe <width> <depth>\n"); exit(-1);}
   width = atoi(argv[1]);
   if (width < 10) {fprintf(stderr, "edge_length must be at least 10\n"); exit(-1);}
   maxdepth = atoi(argv[2]);
@@ -112,13 +112,13 @@ int main(int argc, char *argv[])
 						
   /* end time */
   gettimeofday(&end, NULL);
-  printf("compute time: %.8f s\n", end.tv_sec + end.tv_usec / 1000000.0 - start.tv_sec - start.tv_usec / 1000000.0);
+  printf("Kristi's Fractal Compute Time: %.8f s\n", end.tv_sec + end.tv_usec / 1000000.0 - start.tv_sec - start.tv_usec / 1000000.0);
 
   cudaMemcpyAsync(cnt, d_cnt, width * width * sizeof(unsigned char), cudaMemcpyDeviceToHost);
 
   /* verify result by writing it to a file */
   if (width <= 1024) {
-    WriteBMP(width, width, cnt, "fractal.bmp");
+    WriteBMP(width, width, cnt, "fractal-from-2016.bmp");
   }
 
   cudaFreeHost(cnt);
